@@ -1,0 +1,29 @@
+@import play.api.libs.json.JsObject
+@(title:String,path:String,jsondata:List[JsObject])(implicit session:play.api.mvc.Session) 
+@import utils.Constants.DEFAULT_PROFILE_IMAGE
+
+@main(title){
+<div class="container">
+	@header(path,session.get("email").get)
+
+	<div class="jumbotron">
+
+		<!-- <p class="lead">Welcome @session.get("email")</p>-->
+		<div class="row">
+			<div class="row-left">
+				<div class="col-xs-6 col-md-3">
+					<a href="#" class="thumbnail"> <img src="@routes.Assets.at("images/profile.jpeg")" />
+					</a>
+				</div>
+			</div>
+			<div class="row-right">
+				<p>@jsondata.map{result => @(((result \ "name").asOpt[String]).get)}</p>
+				<p>@session.get("email")</p>
+			</div>
+		</div>
+
+	</div>
+	@footer()
+</div>
+<!-- /container -->
+}

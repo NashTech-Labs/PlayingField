@@ -1,0 +1,21 @@
+@import models.Domains._
+@(loginForm:Form[LoginForm],path:String)(implicit flash: Flash) 
+@import helper._ 
+@main("Welcome to Login Page"){
+<div class="container">
+	@header(path)
+	<div class="jumbotron">
+		@form(routes.Application.loginAuthentication){
+
+		@loginformElements(loginForm)
+
+		<div class="registration-error">@flash.get("message")</div>
+
+		<input type="submit" name="login" value="Login"
+			class="btn btn-primary"> }
+	</div>
+	@footer()
+
+</div>
+<!-- /container -->
+}

@@ -1,0 +1,21 @@
+@(path:String="false",sessionvalue:String="false")
+<div class="header">
+	<ul class="nav nav-pills pull-right">
+		@if(sessionvalue=="false"){
+		<li @if(path== "/"){ class="active"}><a
+			href="@(routes.Application.index)">Home</a></li>
+		<li @if(path== "/registration"){ class="active"}><a
+			href="@(routes.Application.registration)">Registration</a></li>
+		<li @if(path== "/login"){ class="active"}><a
+			href="@(routes.Application.login)">Login</a></li> }else{
+		<li @if(path== "/dashboard"){ class="active"}><a
+			href="@(routes.Application.dashboard)">Dashboard</a></li>
+		
+		<!-- <li @if(path== "/editprofile"){ class="active"}><a
+			href="@(routes.Application.dashboard)">Edit Profile</a></li>	-->
+			
+		<li @if(path== "/logout"){ class="active"}><a
+			href="@(routes.Application.logout)">Logout</a></li> }
+	</ul>
+	<h3 class="text-muted">Play with reactive mongo</h3>
+</div>

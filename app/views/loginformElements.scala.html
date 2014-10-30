@@ -1,0 +1,6 @@
+@import models.Domains._
+@(loginForm: Form[LoginForm])
+@import helper._
+@implicitField = @{ helper.FieldConstructor(BootstrapInput.f) }
+@inputText(loginForm("email"),'_label -> "Email", '_showConstraints -> false,'class -> "form-control")
+@inputPassword(loginForm("password"),'_label -> "Password", '_showConstraints -> false,'class -> "form-control")

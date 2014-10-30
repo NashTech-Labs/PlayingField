@@ -1,0 +1,28 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+	
+	
+# Home page
+GET     /                           				controllers.Application.index
+	
+# Registration page
+GET     /registration                           	controllers.Application.registration
+	
+# Login page
+GET     /login                           			controllers.Application.login
+	
+# logout
+GET     /logout                           			controllers.Application.logout
+	
+#save userdata
+POST   /registration								controllers.Application.createUser
+	
+# loginAuthentication 
+	
+POST /login											controllers.Application.loginAuthentication
+	
+#Dashboard page
+GET   /dashboard									controllers.Application.dashboard
+	
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file              					controllers.Assets.at(path="/public", file)

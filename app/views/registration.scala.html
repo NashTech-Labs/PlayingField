@@ -1,0 +1,24 @@
+@import models.Domains._
+
+@(userForm:Form[UserForm],path:String)(implicit flash: Flash) 
+
+@import helper._
+
+@main("Welcome to Registration Page"){
+	<div class="container">
+      @header(path)
+      <div class="jumbotron">
+        @form(routes.Application.createUser){
+		
+		@registrationformElements(userForm)
+		
+		<div class="registration-error">@flash.get("message")</div>
+		
+		<input type="submit" name="submit" value="Submit" class="btn btn-primary"> 
+		
+	}
+      </div>
+      @footer()
+
+    </div> <!-- /container -->
+}

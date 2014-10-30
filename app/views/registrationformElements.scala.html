@@ -1,0 +1,9 @@
+@import models.Domains._
+@(userForm: Form[UserForm])
+@import helper._
+@implicitField = @{ helper.FieldConstructor(BootstrapInput.f) }
+@inputText(userForm("name"),'_label -> "Name", '_showConstraints -> false,'class -> "form-control")
+@inputText(userForm("email"),'_label -> "Email", '_showConstraints -> false,'class -> "form-control")
+@inputPassword(userForm("password.main"),'_label -> "Password", '_help ->"Password should be minimum 6 character",'class -> "form-control")
+@inputPassword(userForm("password.confirm"),'_error ->userForm.error("password"), '_label -> "Confirm Password", '_showConstraints -> false,'class -> "form-control")
+@inputText(userForm("joinDate"),'_label -> "Joining Date", '_showConstraints -> false,'class -> "form-control")

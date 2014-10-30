@@ -1,0 +1,14 @@
+@(elements: helper.FieldElements)
+
+@**************************************************
+* Generate custom form constraints
+**************************************************@
+<div class="form-group @if(elements.hasErrors) {has-error}">
+      <label for="@elements.id">@elements.label</label>
+      @elements.input
+      <span class="registration-error">@elements.errors(elements.lang).mkString(", ")</span>
+      @if(!elements.hasErrors){
+      	<span class="help">@elements.infos(elements.lang).mkString(", ")</span>
+      }
+      
+</div>
