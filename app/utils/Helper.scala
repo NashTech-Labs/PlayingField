@@ -15,7 +15,7 @@ object Helper {
    * @param request - HTTP request
    * @param element - find session value stored in element
    */
-  def findSession(request: RequestHeader, element: String): String = {	
+  def findSessionElementValue(request: RequestHeader, element: String): String = {	
     request.session.get(element).map { sessionvalue =>
       sessionvalue
     }.getOrElse {
@@ -29,7 +29,7 @@ object Helper {
    * @param request - HTTP request
    * @param element - find flash value stored in element
    */
-  def findFlash(request: RequestHeader, element: String): String = {
+  def findFlashElementValue(request: RequestHeader, element: String): String = {
     
     request.flash.get(element).getOrElse {
       " "

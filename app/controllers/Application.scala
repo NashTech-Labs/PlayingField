@@ -39,7 +39,8 @@ object Application extends Controller {
    * Redirect Home Page
    */
   def index = Action { request =>
-    Ok(html.index(HOME_PAGE_TITLE, findUri(request)))
+    //Ok(html.index(HOME_PAGE_TITLE, findUri(request)))
+    Redirect(routes.Application.registration)
   }
 
   /*
@@ -47,8 +48,8 @@ object Application extends Controller {
    */
   def registration = Action { implicit request =>
 
-    val name = findFlash(request, "name")
-    val email = findFlash(request, "email")
+    val name = findFlashElementValue(request, "name")
+    val email = findFlashElementValue(request, "email")
     if (email != " ") {
       val userForm = Application.userForm.fill(UserForm(name, email, (" ", " "), new Date))
     }
@@ -61,7 +62,7 @@ object Application extends Controller {
    */
   def login = Action { implicit request =>
 
-    val email = findFlash(request, "email")
+    val email = findFlashElementValue(request, "email")
     if (email != " ") {
       val loginForm = Application.loginForm.fill(LoginForm(email, " "))
     }
@@ -137,10 +138,10 @@ object Application extends Controller {
    * Redirect Dashboard
    */
   def dashboard = Action.async { implicit request =>
-    if (findSession(request, "email") == " ") {
+    if (findSessionElementValue(request, "email") == " ") {
       Future(Redirect(routes.Application.login))
     } else {
-      val jsonuserdata = Json.obj("email" -> findSession(request, "email"))
+      val jsonuserdata = Json.obj("email" -> findSessionElementValue(request, "email"))
       val userfutureresult = getDocumentsByQuery(USER_COLLECTION_NAME, jsonuserdata)
 
       userfutureresult.map { result =>
