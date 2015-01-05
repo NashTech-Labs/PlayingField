@@ -15,7 +15,7 @@ object Helper {
    * @param request - HTTP request
    * @param element - find session value stored in element
    */
-  def findSession(request: RequestHeader, element: String): String = {
+  def findSession(request: RequestHeader, element: String): String = {	
     request.session.get(element).map { sessionvalue =>
       sessionvalue
     }.getOrElse {

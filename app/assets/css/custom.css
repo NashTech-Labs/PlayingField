@@ -46,8 +46,8 @@ body {
 }
 
 .jumbotron .btn {
-	padding: 14px 24px;
-	font-size: 21px;
+	/*padding: 14px 24px;
+	font-size: 21px;*/
 }
 
 /* Supporting marketing content */
@@ -100,4 +100,12 @@ body {
 .row-right{
 	float:right;
 	width:70%
+}
+
+.btn-cancel{
+	background-color:white;
+}
+
+.or-label{
+	margin-top:20px;
 }

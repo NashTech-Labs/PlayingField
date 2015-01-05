@@ -1,4 +1,4 @@
-name := """playreactivemongo"""
+name := """PlayingField"""
 
 version := "1.0-SNAPSHOT"
 
