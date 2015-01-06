@@ -2,12 +2,15 @@
 <div class="header">
 	<ul class="nav nav-pills pull-right">
 		@if(sessionvalue=="false"){
-		<li @if(path== "/"){ class="active"}><a
-			href="@(routes.Application.index)">Home</a></li>
+		<!--<li @if(path== "/"){ class="active"}><a
+			href="@(routes.Application.index)">Home</a></li>-->
 		<li @if(path== "/registration"){ class="active"}><a
 			href="@(routes.Application.registration)">Registration</a></li>
 		<li @if(path== "/login"){ class="active"}><a
-			href="@(routes.Application.login)">Login</a></li> }else{
+			href="@(routes.Application.login)">Login</a></li> 
+		<li @if(path== "/currencyconverter"){ class="active"}><a
+			href="@(routes.CurrencyConverter.currencyConverterForm)">Currency Converter</a></li> 	
+			}else{
 		<li @if(path== "/dashboard"){ class="active"}><a
 			href="@(routes.Application.dashboard)">Dashboard</a></li>
 		

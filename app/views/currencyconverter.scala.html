@@ -1,0 +1,40 @@
+@(title:String,path:String)
+@import helper._
+
+@main("Welcome to Currency Converter Page"){
+	<div class="container">
+      @header(path)
+      <div class="jumbotron">
+         <form action="@routes.CurrencyConverter.currencyConverter" method="POST">
+         
+         <div class="form-group ">
+			<label for="name">Currency From:</label>
+			 <select class="form-control" name="currencyfrom">
+		        <option value="USD">USD - US Dollar</option>
+		        <option value="GBP">GBP - UK Pound Sterling</option>
+		        <option value="EUR">EUR - Euro</option>
+    		</select>
+		</div>
+		
+		
+		<div class="form-group ">
+			<label for="name">Currency To:</label>
+			 <select class="form-control" name="currencyto">
+		        <option value="USD">USD - US Dollar</option>
+		        <option value="GBP">GBP - UK Pound Sterling</option>
+		        <option value="EUR">EUR - Euro</option>
+    		</select>
+		</div>
+		
+		<div class="form-group ">
+			<label for="name">Amount</label>
+			<input id="name" class="form-control" type="text" value="" name="amount">
+		</div>
+         
+    <input class="btn btn-primary" type="submit" value="Convert" name="Convert">
+</form>
+      </div>
+      @footer()
+
+    </div> <!-- /container -->
+}
