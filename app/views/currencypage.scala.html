@@ -1,0 +1,16 @@
+@(rate:Double,amount:Double,multiple:Double,currencyfrom:String,currencyto:String)
+@import helper._
+
+@main("Welcome to Currency Converter Page"){
+	<div class="container">
+      @header()
+      <div class="jumbotron">
+      <h1>Total @currencyto @multiple</h1>
+       <p>Converted @amount @currencyfrom to @currencyto at an exchange rate of @rate	</p>
+       <br/><br/> <br/>
+       <p><a href="@routes.CurrencyConverter.currencyConverterForm"><button class="btn btn-primary" >Back</button></a></p>
+      </div>
+      @footer()
+
+    </div> <!-- /container -->
+}

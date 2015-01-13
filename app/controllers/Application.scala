@@ -39,8 +39,8 @@ object Application extends Controller {
    * Redirect Home Page
    */
   def index = Action { request =>
-    //Ok(html.index(HOME_PAGE_TITLE, findUri(request)))
-    Redirect(routes.Application.registration)
+    Ok(html.index(HOME_PAGE_TITLE, findUri(request)))
+    //Redirect(routes.Application.registration)
   }
 
   /*

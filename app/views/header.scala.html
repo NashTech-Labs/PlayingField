@@ -2,8 +2,8 @@
 <div class="header">
 	<ul class="nav nav-pills pull-right">
 		@if(sessionvalue=="false"){
-		<!--<li @if(path== "/"){ class="active"}><a
-			href="@(routes.Application.index)">Home</a></li>-->
+		<li @if(path== "/"){ class="active"}><a
+			href="@(routes.Application.index)">Home</a></li>
 		<li @if(path== "/registration"){ class="active"}><a
 			href="@(routes.Application.registration)">Registration</a></li>
 		<li @if(path== "/login"){ class="active"}><a
