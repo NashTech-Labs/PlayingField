@@ -12,7 +12,13 @@ import reactivemongo.api._
 import play.modules.reactivemongo.MongoController
 import play.modules.reactivemongo.json.collection.JSONCollection
 
-object QueryBuilder extends Controller with MongoController {
+trait QueryBuilderComp {
+  def collection(collectionname: String): JSONCollection
+  def getDocumentsByQuery(collectionname: String, query: JsObject): Future[List[JsObject]]
+  def insertDocuments(collectionname: String, documents: JsObject):Boolean
+}
+
+object QueryBuilder extends Controller with MongoController with QueryBuilderComp{
   /*
    * Get a JSONCollection (a Collection implementation that is designed to work
    * with JsObject, Reads and Writes.)
@@ -28,8 +34,9 @@ object QueryBuilder extends Controller with MongoController {
     futureresult
   }
 
-  def insertDocuments(collectionname: String, documents: JsObject) {
+  def insertDocuments(collectionname: String, documents: JsObject):Boolean= {
     collection(collectionname).insert(documents)
+    return true
   }
 
 }

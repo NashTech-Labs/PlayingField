@@ -2,10 +2,8 @@ package controllers
 
 import models.Domains._
 import models.QueryBuilder._
-
 import utils.Helper._
 import utils.Constants._
-
 import play.api._
 import play.api.mvc._
 import play.api.data.Form
@@ -13,13 +11,13 @@ import play.api.data.Forms._
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.api.libs.functional.syntax._
 import play.api.libs.json._
-
 import java.util.Date
 import scala.concurrent.Future
+import views.html
+import models.QueryBuilderComp
+import models.QueryBuilder
 
-import views.html																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																								 
-
-object Application extends Controller {
+class Application(queryBuilderComp:QueryBuilderComp)extends Controller {
  /*
  * userForm	
  */
@@ -152,3 +150,5 @@ object Application extends Controller {
   }
 
 }
+
+object Application extends Application(QueryBuilder)
