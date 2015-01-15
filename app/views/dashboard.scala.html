@@ -17,7 +17,6 @@
 				</div>
 			</div>
 			<div class="row-right">
-				<p>@jsondata.map{result => @(((result \ "name").asOpt[String]).get)}</p>
 				<p>@session.get("email")</p>
 			</div>
 		</div>

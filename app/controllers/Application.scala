@@ -89,47 +89,21 @@ object Application extends Controller {
         val (password, _) = userForm.password
         val joinDate = userForm.joinDate
         val saveRecord = Json.obj("name" -> name, "email" -> email, "password" -> password, "joinDate" -> joinDate)
-
-        val jsonuserdata = Json.obj("email" -> email)
-        val futureUserdetails = getDocumentsByQuery(USER_COLLECTION_NAME, jsonuserdata)
-
-        futureUserdetails.map { result =>
-          if (result.size > 0) {
-            Redirect(routes.Application.registration).flashing(
-              "message" -> ENTERED_EMAIL_EXISTS, "name" -> name, "email" -> email)
-          } else {
-            val futuresaveUser = insertDocuments(USER_COLLECTION_NAME, saveRecord)
-            Redirect(routes.Application.dashboard).withSession(
-              "email" -> email)
-          }
-
-        }
-
+        Future(Redirect(routes.Application.dashboard).withSession("email" -> email))
       })
   }
   /*
    * Login Authentication
    */
 
-  def loginAuthentication = Action.async { implicit request =>
+  def loginAuthentication = Action{ implicit request =>
     loginForm.bindFromRequest.fold(
-      error => Future(BadRequest(html.login(error, findUri(request)))),
+      error => BadRequest(html.login(error, findUri(request))),
       loginForm => {
         val email = loginForm.email
         val password = loginForm.password
-        val jsonuserdata = Json.obj("email" -> email, "password" -> password)
-        val futureUserdetails = getDocumentsByQuery(USER_COLLECTION_NAME, jsonuserdata)
-
-        futureUserdetails.map { result =>
-          if (result.size > 0) {
-            Redirect(routes.Application.dashboard).withSession(
+        Redirect(routes.Application.dashboard).withSession(
               "email" -> email)
-          } else {
-            Redirect(routes.Application.login).flashing(
-              "message" -> WRONG_LOGIN_DETAILS, "email" -> email)
-          }
-
-        }
       })
 
   }
@@ -137,17 +111,12 @@ object Application extends Controller {
   /*
    * Redirect Dashboard
    */
-  def dashboard = Action.async { implicit request =>
+  def dashboard = Action.async{ implicit request =>
     if (findSessionElementValue(request, "email") == " ") {
       Future(Redirect(routes.Application.login))
     } else {
-      val jsonuserdata = Json.obj("email" -> findSessionElementValue(request, "email"))
-      val userfutureresult = getDocumentsByQuery(USER_COLLECTION_NAME, jsonuserdata)
-
-      userfutureresult.map { result =>
-        Ok(html.dashboard(DASHBOARD_TITLE, findUri(request), result))
-      }
-
+      val jsonuserdata = List(Json.obj("email" -> findSessionElementValue(request, "email")))
+        Future(Ok(html.dashboard(DASHBOARD_TITLE, findUri(request), jsonuserdata)))
     }
   }
 
