@@ -1,7 +1,6 @@
 package controllers
 
 import models.Domains._
-import models.QueryBuilder._
 
 import utils.Helper._
 import utils.Constants._
@@ -88,7 +87,6 @@ object Application extends Controller {
         val email = userForm.email
         val (password, _) = userForm.password
         val joinDate = userForm.joinDate
-        val saveRecord = Json.obj("name" -> name, "email" -> email, "password" -> password, "joinDate" -> joinDate)
         Future(Redirect(routes.Application.dashboard).withSession("email" -> email))
       })
   }
